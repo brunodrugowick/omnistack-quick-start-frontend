@@ -15,6 +15,7 @@ class Feed extends Component {
     };
 
     async componentDidMount() {
+        console.log(process.env.REACT_APP_API_ADDRESS);
         const response = await api.get('posts');
         console.log(response.data);
         this.setState({ feed: response.data.posts });
@@ -33,7 +34,7 @@ class Feed extends Component {
                         <img src={more} alt="More" />
                     </header>
                     
-                    <img src={`https://omnistack-quick-start-backend.herokuapp.com/files/${post.image}`} />
+                    <img src={`${process.env.REACT_APP_API_ADDRESS}/files/${post.image}`} />
 
                     <footer>
                         <div className="actions">

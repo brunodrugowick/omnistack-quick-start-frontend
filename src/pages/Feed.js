@@ -34,10 +34,19 @@ class Feed extends Component {
                         <img src={more} alt="More" />
                     </header>
                     
-                    <img 
-                        src={`data:image/jpeg;base64,${btoa(String.fromCharCode.apply(null, post.imageBinary.data.data))}`} 
-                        alt={post.description} 
-                    />
+                    {post.imageBinary == null ? (
+                        <img 
+                            src={`${process.env.REACT_APP_API_ADDRESS}/files/${post.image}`} 
+                            alt={post.description}
+                        />
+                    ) : (
+                        <img 
+                            src={`data:image/jpeg;base64,${btoa(String.fromCharCode.apply(null, post.imageBinary.data.data))}`} 
+                            alt={post.description} 
+                        />
+                    )
+
+                    }
 
                     <footer>
                         <div className="actions">

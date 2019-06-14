@@ -34,15 +34,15 @@ class Feed extends Component {
                         <img src={more} alt="More" />
                     </header>
                     
-                    {post.imageBinary == null ? (
+                    {typeof post.imageBinary === 'undefined' ? (
                         <img 
                             src={`${process.env.REACT_APP_API_ADDRESS}/files/${post.image}`} 
-                            alt={post.description}
+                            alt={`( using static image ) ${post.description}`}
                         />
                     ) : (
                         <img 
                             src={`data:image/jpeg;base64,${btoa(String.fromCharCode.apply(null, post.imageBinary.data.data))}`} 
-                            alt={post.description} 
+                            alt={`( using binary image from database ) ${post.description}`}
                         />
                     )
 

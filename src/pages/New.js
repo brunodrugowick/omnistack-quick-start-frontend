@@ -9,10 +9,12 @@ class New extends Component {
         place: '',
         description: '',
         hashtags: '',
+        loading: false,
     };
 
     handleSubmit = async e => {
         e.preventDefault();
+        this.setState({ loading: true });
 
         const data = new FormData();
         data.append('image', this.state.image);
@@ -21,7 +23,9 @@ class New extends Component {
         data.append('description', this.state.description);
         data.append('hashtags', this.state.hashtags);
         
-        await api.post('posts', data);
+        await api.post('posts', data).then(() => {
+            this.setState({ loading: false });
+        });
 
         this.props.history.push('/');
     }
@@ -35,14 +39,17 @@ class New extends Component {
     }
 
     render() {
+        const { loading } = this.state;
         return (
             <form id="new-post" onSubmit={this.handleSubmit}>
                 <input 
+                    required
                     type="file" 
                     onChange={this.handleImageChange}
                 />
 
                 <input 
+                    required
                     type="text" 
                     name="author"
                     placeholder="Author"
@@ -51,6 +58,7 @@ class New extends Component {
                 />
 
                 <input 
+                    required
                     type="text" 
                     name="place"
                     placeholder="Local"
@@ -59,6 +67,7 @@ class New extends Component {
                 />
 
                 <input 
+                    required
                     type="text" 
                     name="description"
                     placeholder="Description"
@@ -74,7 +83,9 @@ class New extends Component {
                     value={this.state.hashtags}
                 />
 
-                <button type="submit">Send Post</button>
+                <button type="submit" disabled={loading}>
+                    Send Post
+                </button>
             </form>
         );
     }

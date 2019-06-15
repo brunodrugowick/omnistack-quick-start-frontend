@@ -105,7 +105,7 @@ class Feed extends Component {
                             <img src={send} alt="send" />
                         </div>
                         
-                        <strong>{post.likes} curtidas</strong>
+                        <strong>{post.likes} likes</strong>
 
                         <p>
                             {post.description}

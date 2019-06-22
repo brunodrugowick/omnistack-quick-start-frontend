@@ -76,9 +76,11 @@ class Post extends Component {
 
         // Registering for comments
         socket.on('comment', newComment => {
-            this.setState({
-                comments: [...this.state.comments, newComment],
-            });
+            if (newComment.post === this.state.post._id) {
+                this.setState({
+                    comments: [...this.state.comments, newComment],
+                });
+            }
         });
     }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from  'react-router-dom';
 import api from '../services/api';
 import io from 'socket.io-client';
 
@@ -92,7 +93,15 @@ class Feed extends Component {
                                     </button>
                                 )
                             }
-                            <img src={comment} alt="comment" />
+                            <Link to={{
+                                pathname: '/post/' + post._id,
+                                state: {
+                                    selectedPost: post,
+                                    likedPosts: this.state.likedPosts,
+                                }
+                            }}>
+                                <img src={comment} alt="comments" />
+                            </Link>
                             <img src={send} alt="send" />
                         </div>
                         

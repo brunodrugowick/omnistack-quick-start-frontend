@@ -2,6 +2,8 @@
 
 This is a React application that runs at [https://omnistack-quick-start-frontend.herokuapp.com/](https://omnistack-quick-start-frontend.herokuapp.com/) with support from its [backend](https://github.com/brunodrugowick/omnistack-quick-start-backend).
 
+There's also a [React Native app](https://github.com/brunodrugowick/omnistackQuickStartMobile) for this project.
+
 ## Features
 
 - View the Feed

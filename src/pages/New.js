@@ -84,7 +84,7 @@ class New extends Component {
                 />
 
                 <button type="submit" disabled={loading}>
-                    Send Post
+                    Share
                 </button>
             </form>
         );

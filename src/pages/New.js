@@ -27,8 +27,28 @@ class New extends Component {
             this.setState({ loading: false });
         });
 
+        /**
+         * SHAME ON ME.
+         * 
+         * The first request to S3 after redirecting to the feed fails.
+         * This is my fix to it. The correct fix would be to test the URL and once it
+         * is working, redirect to the Feed.
+         * 
+         * For now, sit tight for about one second and hope for the best.
+         */
+        this.sleep(1000);
+
         this.props.history.push('/');
     }
+
+    sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+          if ((new Date().getTime() - start) > milliseconds){
+            break;
+          }
+        }
+      }
 
     handleImageChange = e => {
         this.setState({ image: e.target.files[0] });

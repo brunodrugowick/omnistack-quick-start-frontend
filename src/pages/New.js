@@ -23,10 +23,8 @@ class New extends Component {
         data.append('description', this.state.description);
         data.append('hashtags', this.state.hashtags);
         
-        await api.post('posts', data).then(() => {
-            this.setState({ loading: false });
-        });
-
+        await api.post('posts', data);
+                
         /**
          * SHAME ON ME.
          * 
@@ -38,6 +36,7 @@ class New extends Component {
          */
         this.sleep(1000);
 
+        this.setState({ loading: false });
         this.props.history.push('/');
     }
 
